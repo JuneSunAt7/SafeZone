@@ -35,7 +35,7 @@
     <property name="styleSheet">
      <string notr="true">border-radius:10px;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0.361905 rgba(52, 59, 104, 255), stop:1 rgba(51, 100, 78, 255));
-font: 700 14pt &quot;Segoe UI&quot;;
+font: 14pt &quot;Segoe UI&quot;;
 color: rgb(0, 0, 0);
 border: 10px ;
 border-color: rgb(7, 7, 7);</string>

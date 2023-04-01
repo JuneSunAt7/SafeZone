@@ -10,6 +10,7 @@
 #include <QTcpSocket>
 #include <QHostAddress>
 #include <QScrollBar>
+#include <QTextCodec>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,31 +33,58 @@ void MainWindow::on_pushButton_clicked()
 
     QDirIterator itDirs(ui->lineEdit->text(), QDir::Dirs);
     QString text;
-
     QString consister = ""; //read from signature txt and consist every str with readable file
+    QStringList conOut;
+    QFile *sign = new QFile("sign1.txt");
+
+    sign->open(QFile::ReadOnly);
+    while (!sign->atEnd()) {
+        conOut.append(sign->readLine());
+    }
+    sign->close();
+
+
 
       QDirIterator itFiles(ui->lineEdit->text(), QDir::Files);
       while (itFiles.hasNext()) {
         itFiles.next();
         QFileInfo info = itFiles.fileInfo();
-             qDebug() << "D | " << info.fileName() << " |  size" << info.size() << " | " << info.lastModified().toString() << " | ";
              QFile *reads = new QFile(info.absoluteFilePath());
 
              reads->open(QFile::ReadOnly);
+            for(int i = 0; i < conOut.size(); i++){ // read all str and consist with hex-file
+             if(reads->readLine().toHex() == conOut.at(i)){
+                 text.append("          " +info.fileName() +"   -- virus!!    \n" );
+                 qDebug() << "          " +info.fileName() +"   -- virus!!    \n";
 
-             if(reads->readLine().toHex() == consister){
-                 text.append("                               " +info.fileName() +"   -- virus!!    \n" );
                  virus = true;
 
              }
              else{
-                  text.append("                               " +info.fileName() +"  --clean  \n" );
+
+                 virus = false;
+
              }
+            }
+
 
 
              reads->close();
       }
-      ui->textEdit->setText(text);
+      if(text.size() != 0){
+
+          QColor color = ui->textEdit->textColor();
+          ui->textEdit->setTextColor(Qt::red);
+           ui->textEdit->setText(text);
+          ui->textEdit->setTextColor(color);
+      }
+      else{
+          QColor color = ui->textEdit->textColor();
+          ui->textEdit->setTextColor(Qt::green);
+          ui->textEdit->setText("Dir clean");
+          ui->textEdit->setAlignment(Qt::AlignmentFlag::AlignHCenter | Qt::AlignmentFlag::AlignVCenter);
+          ui->textEdit->setTextColor(color);
+      }
 }
 
 

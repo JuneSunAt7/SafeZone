@@ -10,10 +10,14 @@
 #include <QTcpSocket>
 #include <QHostAddress>
 #include <QScrollBar>
+#include <QTextCodec>
+#include <QNetworkInterface>
 
 
 void MainWindow::on_scanPortsBth_clicked()
 {
+
+
     QString program = "netstat -a";
 
     QProcess *Process = new QProcess(this);
@@ -33,5 +37,21 @@ void MainWindow::on_scanPortsBth_clicked()
 
 void MainWindow::on_netBth_clicked()
 {
+     QNetworkInterface interface;
+    QList <QNetworkInterface> list = interface.allInterfaces();
 
+    QString result;
+    for (int i = 0; i < list.size(); ++i)
+    {
+        result += list.at(i).hardwareAddress() + list.at(i).humanReadableName() + list.at(i).flags() +
+                list.at(i).name() + QString("\n");
+
+    }
+    ui->textEdit->setPlainText(result);
+
+    QTextCursor cursor(ui->textEdit->textCursor());
+    cursor.movePosition(QTextCursor::Start);
+
+     QScrollBar *bar = ui->textEdit->verticalScrollBar();
+     bar->setValue(bar->maximum());
 }

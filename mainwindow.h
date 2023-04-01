@@ -32,6 +32,7 @@ private slots:
 
     void on_vulnsBth_clicked();
 
+
 private:
     Ui::MainWindow *ui;
 };
