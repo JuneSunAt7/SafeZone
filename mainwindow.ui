@@ -35,7 +35,7 @@
     <property name="styleSheet">
      <string notr="true">border-radius:10px;
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0.361905 rgba(52, 59, 104, 255), stop:1 rgba(51, 100, 78, 255));
-font: 14pt &quot;Segoe UI&quot;;
+font: 700 14pt &quot;Segoe UI&quot;;
 color: rgb(0, 0, 0);
 border: 10px ;
 border-color: rgb(7, 7, 7);</string>
@@ -225,6 +225,22 @@ font: 700 14pt &quot;Segoe UI&quot;;</string>
     </property>
     <property name="text">
      <string>System</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>160</y>
+      <width>561</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 254, 209, 255), stop:1 rgba(0, 172, 234, 255));</string>
+    </property>
+    <property name="value">
+     <number>24</number>
     </property>
    </widget>
   </widget>

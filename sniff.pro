@@ -23,4 +23,4 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-win32: RC_ICONS = $$PWD/shield.ico
+win32: RC_ICONS = $$PWD/cyber-security.ico
